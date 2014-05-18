@@ -36,6 +36,12 @@
     [self registerForKeyboardNotifications];
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 /*
 // Called when the UIKeyboardDidShowNotification is sent.
@@ -52,43 +58,8 @@
     [self restoreScrollViewWhenKeyboardWillBeHidden:aNotification scrollView:self.myScrollView];
 }
 */
-// Called when the UIKeyboardDidShowNotification is sent.
 
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    self.keyboardSize = [self insetScrollViewWhenKeyboardWasShown:aNotification scrollView:self.myScrollView];
-    
-     [self scrollFieldIntoView:self.labelField rootView:self.view keyboardSize:self.keyboardSize scrollView:self.myScrollView];
-
-    // If active text field is hidden by keyboard, scroll it so it's visible
-    // Your app might not need or want this behavior.
-/*    CGRect aRect = self.view.frame;
-    aRect.size.height -= self.keyboardSize.height;
-    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
-        [self.myScrollView scrollRectToVisible:self.activeField.frame animated:YES];
-    }*/
-}
-
-
-#if 0
-// scroll to the active View
-- (void)keyboardWasShown:(NSNotification*)aNotification {
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    CGRect bkgndRect = self.activeField.superview.frame;
-    bkgndRect.size.height += kbSize.height;
-    [self.activeField.superview setFrame:bkgndRect];
-    [self.myScrollView setContentOffset:CGPointMake(0.0, self.activeField.frame.origin.y-kbSize.height) animated:YES];
-}
-#endif
-
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.myScrollView.contentInset = contentInsets;
-    self.myScrollView.scrollIndicatorInsets = contentInsets;
-}
+#pragma mark keyboard management
 
 - (void)registerForKeyboardNotifications
 {
@@ -117,10 +88,20 @@
     
 }
 
-- (void)didReceiveMemoryWarning
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.keyboardSize = [self insetScrollViewWhenKeyboardWasShown:aNotification scrollView:self.myScrollView];
+    
+    [self scrollFieldIntoView:self.labelField rootView:self.view keyboardSize:self.keyboardSize scrollView:self.myScrollView];
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.myScrollView.contentInset = contentInsets;
+    self.myScrollView.scrollIndicatorInsets = contentInsets;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -138,4 +119,7 @@
 {
     self.activeField = nil;
 }
+
+
+
 @end
