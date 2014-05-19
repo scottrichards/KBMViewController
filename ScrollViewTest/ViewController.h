@@ -12,9 +12,4 @@
 
 @interface ViewController : KBMViewController
 
-/*
-@property (strong, nonatomic) IBOutlet UIView *contentView;
-- (void)keyboardWasShown:(NSNotification*)aNotification;
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification;
-*/
 @end
