@@ -1,40 +1,48 @@
 //
-//  ViewController.m
+//  KBMViewController.m
 //  ScrollViewTest
 //
-//  Created by Scott Richards on 5/11/14.
+//  Created by Scott Richards on 5/18/14.
 //  Copyright (c) 2014 Scott Richards. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "KBMViewController.h"
 
-
-@interface ViewController ()
+@interface KBMViewController ()
 @property (strong, nonatomic) UIScrollView *myScrollView;
 @property (assign, nonatomic) CGSize keyboardSize;
-@property (strong, nonatomic) IBOutlet UITextField *labelField;
 @property (strong, nonatomic) UITextField *activeField;
 @end
 
-@implementation ViewController
+@implementation KBMViewController
 
-#if 0
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     CGRect fullScreenRect=[[UIScreen mainScreen] applicationFrame];
     self.myScrollView=[[UIScrollView alloc] initWithFrame:fullScreenRect];
     [self.myScrollView setScrollEnabled:YES];
     [self.myScrollView setContentSize:CGSizeMake(320,800)];
-    [self.contentView removeFromSuperview];
-    [self.view addSubview:self.myScrollView];
-    [self.myScrollView addSubview:self.contentView];
-    CGRect scrollFrame = self.myScrollView.frame;
-    NSLog(@"self.myScrollView x: %f, y: %f, w: %f, h: %f",scrollFrame.origin.x,scrollFrame.origin.y,scrollFrame.size.width,scrollFrame.size.height);
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    NSLog(@"screenRect x: %f, y: %f, w: %f, h: %f",screenRect.origin.x,screenRect.origin.y,screenRect.size.width,screenRect.size.height);
+    UIView *contentView;
+    if (self.view.subviews && [self.view.subviews[0] isKindOfClass:[UIView class]])
+    {
+        contentView = self.view.subviews[0];
+        [contentView removeFromSuperview];
+        [self.view addSubview:self.myScrollView];
+        [self.myScrollView addSubview:contentView];
+
+    }
     [self registerForKeyboardNotifications];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,24 +51,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 /*
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    self.keyboardSize = [self insetScrollViewWhenKeyboardWasShown:aNotification scrollView:self.myScrollView];
-    
-//    [self scrollFieldIntoView:self.labelField rootView:self.view keyboardSize:self.keyboardSize scrollView:self.myScrollView];
-}
+#pragma mark - Navigation
 
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [self restoreScrollViewWhenKeyboardWillBeHidden:aNotification scrollView:self.myScrollView];
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
 */
 
-#pragma mark keyboard management
+#pragma mark - Keyboard Management
 
 - (void)registerForKeyboardNotifications
 {
@@ -94,7 +96,7 @@
 {
     self.keyboardSize = [self insetScrollViewWhenKeyboardWasShown:aNotification scrollView:self.myScrollView];
     
-    [self scrollFieldIntoView:self.labelField rootView:self.view keyboardSize:self.keyboardSize scrollView:self.myScrollView];
+    [self scrollFieldIntoView:self.activeField rootView:self.view keyboardSize:self.keyboardSize scrollView:self.myScrollView];
 }
 
 // Called when the UIKeyboardWillHideNotification is sent
@@ -121,6 +123,5 @@
     self.activeField = nil;
 }
 
-#endif
 
 @end

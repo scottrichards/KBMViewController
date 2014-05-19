@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ScrollView+Utilities.h"
+#import "KBMViewController.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate>
+@interface ViewController : KBMViewController
 
+/*
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 - (void)keyboardWasShown:(NSNotification*)aNotification;
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
-
+*/
 @end

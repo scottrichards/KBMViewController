@@ -22,6 +22,7 @@
 		0150045519202CCF00838E06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0150045319202CCF00838E06 /* InfoPlist.strings */; };
 		0150045719202CCF00838E06 /* ScrollViewTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0150045619202CCF00838E06 /* ScrollViewTestTests.m */; };
 		01759EE619242A8200CB374C /* ScrollView+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 01759EE519242A8200CB374C /* ScrollView+Utilities.m */; };
+		0192B5AE192917DA0053A1DB /* KBMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192B5AD192917DA0053A1DB /* KBMViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		0150045619202CCF00838E06 /* ScrollViewTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollViewTestTests.m; sourceTree = "<group>"; };
 		01759EE419242A8200CB374C /* ScrollView+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScrollView+Utilities.h"; sourceTree = "<group>"; };
 		01759EE519242A8200CB374C /* ScrollView+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ScrollView+Utilities.m"; sourceTree = "<group>"; };
+		0192B5AC192917DA0053A1DB /* KBMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBMViewController.h; sourceTree = "<group>"; };
+		0192B5AD192917DA0053A1DB /* KBMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBMViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,8 @@
 				01759EE519242A8200CB374C /* ScrollView+Utilities.m */,
 				0150044319202CCF00838E06 /* Images.xcassets */,
 				0150043219202CCF00838E06 /* Supporting Files */,
+				0192B5AC192917DA0053A1DB /* KBMViewController.h */,
+				0192B5AD192917DA0053A1DB /* KBMViewController.m */,
 			);
 			path = ScrollViewTest;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			files = (
 				0150044219202CCF00838E06 /* ViewController.m in Sources */,
 				0150043C19202CCF00838E06 /* AppDelegate.m in Sources */,
+				0192B5AE192917DA0053A1DB /* KBMViewController.m in Sources */,
 				01759EE619242A8200CB374C /* ScrollView+Utilities.m in Sources */,
 				0150043819202CCF00838E06 /* main.m in Sources */,
 			);
